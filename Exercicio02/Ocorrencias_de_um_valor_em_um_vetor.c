@@ -49,12 +49,15 @@ int main(){
     end = omp_get_wtime();
     parallel_time = end - start;
 
+    double speedup = seq_time/parallel_time;
+    double eff = speedup/number_of_threads;
+
     printf("Contagem sequencial:\t %d \n", count_seq);
     printf("Contagem paralela:\t %d \n", count_parallel);
     printf("Tempo sequencial:\t %.5f s\n", seq_time);
     printf("Tempo paralelo:\t\t %.5f s\n", parallel_time);
-    printf("Speedup:\t\t %.5f \n", seq_time/parallel_time);
-    printf("Eficiência:\t\t %.5f \n", seq_time/(number_of_threads * parallel_time));
+    printf("Speedup:\t\t %.5f \n", speedup);
+    printf("Eficiência:\t\t %.5f \n", eff);
 
     return 0;
 }
